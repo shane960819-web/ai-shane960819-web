@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Antigravity Workflow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="bgCanvas" aria-hidden="true"></canvas>
+
+  <div class="page-shell">
+    <main class="app-shell">
+      <section class="hero-panel glass-panel">
+        <div>
+          <p class="eyebrow">Zero-G task planning</p>
+          <h1>Antigravity Workflow</h1>
+          <p class="subtitle">把沉重目標拆成可以立刻開始的微米任務。</p>
+        </div>
+        <div class="hero-actions">
+          <div class="status-pill" id="taskSummary">尚未拆解</div>
+          <button class="secondary-action" id="exportButton" type="button">導出報告</button>
+        </div>
+      </section>
+
+      <section class="workspace-grid">
+        <section class="input-panel glass-panel" aria-labelledby="inputTitle">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Goal</p>
+              <h2 id="inputTitle">今天想減輕哪個目標？</h2>
+            </div>
+          </div>
+
+          <label class="field-label" for="goalInput">大目標</label>
+          <textarea id="goalInput" rows="6" placeholder="例如：讀完三篇社會學文獻，整理成報告大綱"></textarea>
+
+          <div class="form-row">
+            <label class="field-label" for="categorySelect">目標類型</label>
+            <select id="categorySelect">
+              <option value="auto">自動判斷</option>
+              <option value="academic">學術研究</option>
+              <option value="project">專案規劃</option>
+              <option value="exam">考試準備</option>
+              <option value="admin">生活行政</option>
+              <option value="general">通用規劃</option>
+            </select>
+          </div>
+
+          <button class="primary-action" id="breakdownButton" type="button">失重拆解</button>
+          <p class="gentle-copy" id="feedbackText">先把目標放下來，我們只需要找到第一小步。</p>
+        </section>
+
+        <section class="task-panel glass-panel" aria-labelledby="taskTitle">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Zephyr Stream</p>
+              <h2 id="taskTitle">微米任務</h2>
+            </div>
+            <div class="task-actions">
+              <button class="secondary-action" id="addTaskButton" type="button">新增一步</button>
+              <button class="secondary-action" id="batchImportButton" type="button">批次匯入</button>
+              <button class="secondary-action" id="clearAllButton" type="button">一鍵清空</button>
+            </div>
+          </div>
+
+          <div class="batch-import-area hidden" id="batchImportArea">
+            <textarea id="batchInput" placeholder="請輸入多個微米任務，每行一個。&#10;例如：&#10;打開文獻前言 3 分鐘&#10;快速標出摘要中的關鍵字&#10;記錄核心研究問題"></textarea>
+            <div class="batch-actions">
+              <button class="primary-action" id="confirmBatchImport" type="button">確認匯入</button>
+              <button class="secondary-action" id="cancelBatchImport" type="button">取消</button>
+            </div>
+          </div>
+
+          <div class="task-list" id="taskList" aria-live="polite"></div>
+        </section>
+
+        <aside class="side-panel glass-panel" aria-label="星軌與減壓控制">
+          <div class="orbit-card">
+            <canvas id="orbitCanvas" width="360" height="280" aria-label="星軌進度拓撲"></canvas>
+            <p class="orbit-caption">星軌進度拓撲</p>
+          </div>
+
+          <div class="control-stack">
+            <div class="control-block">
+              <p class="control-title">呼吸引導</p>
+              <label class="field-label" for="breathModeSelect">模式</label>
+              <select id="breathModeSelect">
+                <option value="none">關閉</option>
+                <option value="478">4-7-8</option>
+                <option value="44">4-4</option>
+              </select>
+            </div>
+
+            <div class="control-block">
+              <p class="control-title">環境音</p>
+              <label class="field-label" for="ambientSelect">音色</label>
+              <select id="ambientSelect">
+                <option value="none">關閉</option>
+                <option value="breeze">微風</option>
+                <option value="sea">海浪</option>
+                <option value="rain">細雨</option>
+              </select>
+              <label class="field-label" for="ambientVolume">音量</label>
+              <input id="ambientVolume" type="range" min="0" max="100" value="35">
+              <button class="secondary-action" id="ambientToggleButton" type="button">播放環境音</button>
+            </div>
+
+            <div class="control-block">
+              <p class="control-title">過載與列印</p>
+              <button class="soft-control" id="overloadButton" type="button">重力過載</button>
+            </div>
+          </div>
+        </aside>
+      </section>
+    </main>
+  </div>
+
+  <div class="breath-bubble" id="breathBubble" aria-live="polite">
+    <div class="breath-bubble__ring"></div>
+    <div class="breath-bubble__content">
+      <span class="breath-bubble__label" id="breathPhaseLabel">呼吸中</span>
+      <span class="breath-bubble__hint" id="breathHint">先穩穩地吸一口氣。</span>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
