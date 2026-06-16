@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>國中地理二下互動學習網站 - 全冊輕鬆懂</title>
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="專為國中二年級學生設計的地理二下互動學習平台，涵蓋東南亞、南亞、西亞與北非、漠南非洲等六大主題。透過互動原理圖解、關鍵詞閃卡、地理時事聯結與自我小測驗，讓地理變得簡單好懂！">
+    <meta name="author" content="Antigravity Educator">
+    <!-- Style Sheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="logo-section">
+                <span class="logo-icon" id="logo-icon-id">📚</span>
+                <div class="logo-text">
+                    <h1 id="logo-title">社會科學習 Hub</h1>
+                    <p id="logo-subtitle">九合一線上學習門戶</p>
+                </div>
+            </div>
+            
+            <nav style="flex-grow: 1; overflow-y: auto;">
+                <ul class="nav-list" id="chapters-nav-list">
+                    <!-- Nav items loaded dynamically by app.js -->
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <!-- Overall Progress -->
+                <div class="progress-widget">
+                    <div class="progress-header">
+                        <span>總學習進度</span>
+                        <span id="overall-progress-text">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="overall-progress-fill"></div>
+                    </div>
+                </div>
+                
+                <!-- Theme toggle and version -->
+                <div class="theme-switch">
+                    <span>切換主題</span>
+                    <button class="switch-btn" id="theme-toggle-btn">☀️</button>
+                </div>
+                <div style="font-size: 10px; color: var(--text-muted); text-align: center;">
+                    版本 1.14.2 (符合108課綱)
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Display Content Area -->
+        <main class="main-content">
+            <!-- Global Subject & Volume Switcher Control Panel -->
+            <div class="control-panel">
+                <div class="subject-tabs">
+                    <button class="subject-tab active" data-subject="geography">
+                        <span class="subject-icon">🌍</span> 地理科
+                    </button>
+                    <button class="subject-tab" data-subject="history">
+                        <span class="subject-icon">📜</span> 歷史科
+                    </button>
+                    <button class="subject-tab" data-subject="civics">
+                        <span class="subject-icon">⚖️</span> 公民科
+                    </button>
+                </div>
+                <div class="volume-selector">
+                    <button class="vol-btn active" data-volume="vol1">第一冊 (1下)</button>
+                    <button class="vol-btn" data-volume="vol2">第二冊 (2下)</button>
+                    <button class="vol-btn" data-volume="vol3">第三冊 (3下)</button>
+                </div>
+            </div>
+
+            <!-- Header section containing active chapter titles -->
+            <header class="content-header">
+                <span class="chapter-tag" id="header-tag">載入中...</span>
+                <h2 class="chapter-title" id="header-title">正在加載課程檔案...</h2>
+                <p class="chapter-subtitle" id="header-subtitle">請稍候，系統正在準備學習模組</p>
+            </header>
+
+            <!-- Navigation Tabs -->
+            <nav class="tabs-nav">
+                <button class="tab-btn active" data-tab="map">
+                    <span>📖</span> 知識地圖
+                </button>
+                <button class="tab-btn" data-tab="flashcard">
+                    <span>💡</span> 詞彙閃卡
+                </button>
+                <button class="tab-btn" data-tab="diagram">
+                    <span>🔄</span> 原理圖解
+                </button>
+                <button class="tab-btn" data-tab="lifestyle">
+                    <span>🌍</span> 生活聯結
+                </button>
+                <button class="tab-btn" data-tab="quiz">
+                    <span>📝</span> 自我測驗
+                </button>
+            </nav>
+
+            <!-- TAB PANELS -->
+            <!-- 1. Knowledge map panel -->
+            <section class="tab-panel active" id="map-panel">
+                <div class="concept-grid" id="map-cards-container">
+                    <!-- Cards populated by app.js -->
+                </div>
+            </section>
+
+            <!-- 2. Flashcard panel -->
+            <section class="tab-panel" id="flashcard-panel">
+                <div class="flashcards-container" id="flashcards-grid-container">
+                    <!-- Cards populated by app.js -->
+                </div>
+            </section>
+
+            <!-- 3. Dynamic Diagram & Climate Explorer panel -->
+            <section class="tab-panel" id="diagram-panel">
+                <div class="info-card" style="display: flex; flex-direction: column; gap: 20px;">
+                    <div class="card-title">
+                        <i>🎯</i> 動態地理原理與氣候探索
+                    </div>
+                    <div class="diagram-stage" id="diagram-stage-container">
+                        <!-- Loaded dynamically by app.js based on selected chapter -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. Everyday Geography / Lifestyle panel -->
+            <section class="tab-panel" id="lifestyle-panel">
+                <div class="lifestyle-grid" id="lifestyle-grid-container">
+                    <!-- Loaded dynamically by app.js -->
+                </div>
+            </section>
+
+            <!-- 5. Interactive Practice Quiz panel -->
+            <section class="tab-panel" id="quiz-panel">
+                <div class="quiz-container">
+                    <div class="quiz-header">
+                        <div style="font-weight: 700;">第 <span id="quiz-current-num">1</span> 題 / 共 5 題</div>
+                        <div class="quiz-score-display">得分：<span id="quiz-score">0 / 5</span></div>
+                    </div>
+                    
+                    <div class="quiz-question-box" id="quiz-question">
+                        載入題目中...
+                    </div>
+                    
+                    <div class="quiz-options" id="quiz-options-container">
+                        <!-- Options generated by app.js -->
+                    </div>
+                    
+                    <div class="quiz-explanation-box" id="quiz-explanation" style="display: none;">
+                        <div class="explanation-title">
+                            <span id="quiz-exp-title">💡 解析小撇步</span>
+                        </div>
+                        <p id="quiz-explanation-text" style="font-size: 14px; color: var(--text-secondary); line-height: 1.5;">
+                            載入解析中...
+                        </p>
+                    </div>
+                    
+                    <div class="quiz-footer">
+                        <button class="quiz-action-btn" id="quiz-next-btn" disabled>下一題</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Application Script -->
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
